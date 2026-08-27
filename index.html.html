@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>La Gazzetta della Bari Cup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f2c3d1;
+    --paper-light:#f8dde4;
+    --card:#fff8f4;
+    --ink:#201613;
+    --ink-soft:#4a3733;
+    --red:#c1332a;
+    --gold:#b8862c;
+    --line:rgba(32,22,19,0.18);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 1px, transparent 1px, transparent 3px);
+    color:var(--ink);
+    font-family:'Libre Baskerville', serif;
+    line-height:1.55;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:28px 20px 80px;}
+
+  /* MASTHEAD */
+  .masthead{
+    text-align:center;
+    border-bottom:6px solid var(--ink);
+    padding-bottom:14px;
+    margin-bottom:6px;
+  }
+  .kicker{
+    font-family:'Space Mono',monospace;
+    letter-spacing:0.25em;
+    font-size:11px;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .title{
+    font-family:'Anton',sans-serif;
+    font-size:clamp(38px,8vw,74px);
+    letter-spacing:0.01em;
+    line-height:0.95;
+    margin:0;
+    text-transform:uppercase;
+  }
+  .subtitle{
+    font-family:'Oswald',sans-serif;
+    font-size:14px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--red);
+    font-weight:600;
+    margin-top:8px;
+  }
+  .tagline{
+    font-family:'Libre Baskerville',serif;
+    font-style:italic;
+    font-size:17px;
+    margin-top:10px;
+    color:var(--ink-soft);
+  }
+  .dateline{
+    display:flex;justify-content:space-between;
+    font-family:'Space Mono',monospace;
+    font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
+    border-bottom:3px double var(--ink);
+    padding:6px 2px;margin-bottom:30px;
+  }
+
+  /* EDITORIAL */
+  .editorial{
+    columns:1;
+    font-size:16px;
+    padding:0 6px 10px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:32px;
+  }
+  .editorial p{margin:0 0 10px;}
+  .editorial .drop{
+    font-family:'Anton',sans-serif;
+    font-size:56px;
+    float:left;
+    line-height:0.75;
+    padding:6px 10px 0 0;
+    color:var(--red);
+  }
+  .editorial .sign{
+    text-align:right;
+    font-family:'Oswald',sans-serif;
+    font-weight:600;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+
+  h2.section-title{
+    font-family:'Anton',sans-serif;
+    text-transform:uppercase;
+    font-size:26px;
+    letter-spacing:0.01em;
+    margin:0 0 4px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  h2.section-title::before{
+    content:"";
+    width:26px;height:26px;
+    background:var(--red);
+    display:inline-block;
+    clip-path:polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+  .section-eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--red);margin-bottom:4px;
+  }
+
+  /* CASE BOX */
+  .case-box{
+    background:var(--card);
+    border:1px solid var(--ink);
+    box-shadow:6px 6px 0 var(--ink);
+    padding:22px 24px;
+    margin:26px 0 40px;
+    position:relative;
+  }
+  .case-box .versus{
+    font-family:'Oswald',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    text-transform:uppercase;
+    display:flex;align-items:center;gap:12px;
+    margin:12px 0 10px;
+    color:var(--ink);
+  }
+  .case-box .versus span.vs{
+    font-family:'Space Mono',monospace;
+    color:var(--red);font-weight:400;font-size:12px;
+  }
+  blockquote{
+    font-family:'Libre Baskerville',serif;
+    font-style:italic;
+    font-size:18px;
+    border-left:4px solid var(--red);
+    margin:14px 0;
+    padding:2px 0 2px 16px;
+    color:var(--ink);
+  }
+  .stamp{
+    position:absolute;
+    top:18px; right:20px;
+    font-family:'Oswald',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--red);
+    border:3px solid var(--red);
+    padding:6px 10px;
+    transform:rotate(8deg);
+    opacity:0.85;
+    border-radius:4px;
+  }
+  .verdict{
+    font-family:'Space Mono',monospace;
+    font-size:14px;
+    background:var(--paper-light);
+    display:inline-block;
+    padding:6px 12px;
+    margin-top:8px;
+    border:1px dashed var(--ink-soft);
+  }
+
+  /* STORY GRID */
+  .grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin:20px 0 44px;
+  }
+  @media (max-width:640px){ .grid{grid-template-columns:1fr;} }
+  .story{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-top:4px solid var(--ink);
+    padding:18px 18px 20px;
+  }
+  .story .tag{
+    font-family:'Space Mono',monospace;
+    font-size:10px;letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:6px;
+  }
+  .story h3{
+    font-family:'Oswald',sans-serif;
+    font-size:19px;
+    text-transform:uppercase;
+    margin:0 0 8px;
+    line-height:1.2;
+  }
+  .story p{font-size:14.5px;margin:0 0 8px;color:var(--ink-soft);}
+  .story .badge{
+    display:inline-block;
+    font-family:'Oswald',sans-serif;
+    font-weight:600;font-size:11.5px;
+    letter-spacing:0.05em;text-transform:uppercase;
+    background:var(--ink);color:var(--paper-light);
+    padding:4px 10px;margin-top:6px;
+  }
+
+  /* PAGELLE */
+  .pagella{
+    display:grid;
+    grid-template-columns:56px 1fr auto;
+    align-items:start;
+    gap:14px;
+    padding:14px 4px;
+    border-bottom:1px solid var(--line);
+  }
+  .dot{
+    width:40px;height:40px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Anton',sans-serif;color:#fff;font-size:16px;
+    border:2px solid var(--ink);
+    margin-top:2px;
+  }
+  .pagella h4{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    font-size:16.5px;
+    margin:0 0 3px;
+  }
+  .pagella p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .vote{
+    font-family:'Anton',sans-serif;
+    font-size:26px;
+    color:var(--ink);
+    white-space:nowrap;
+  }
+
+  /* QUOTE SCUDETTO */
+  .quote-list{
+    background:var(--card);
+    border:1px solid var(--ink);
+    padding:6px 22px;
+    margin:20px 0 44px;
+  }
+  .quote-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:12px 0;
+    border-bottom:1px dashed var(--line);
+    font-family:'Oswald',sans-serif;
+  }
+  .quote-row:last-child{border-bottom:none;}
+  .quote-row .pos{
+    font-family:'Space Mono',monospace;
+    color:var(--red);width:34px;font-size:14px;
+  }
+  .quote-row .name{flex:1;font-weight:600;font-size:15.5px;text-transform:uppercase;}
+  .quote-row .stars{font-size:15px;letter-spacing:1px;color:var(--gold);}
+
+  /* AWARDS */
+  .awards{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px;
+    margin:20px 0 44px;
+  }
+  @media (max-width:640px){ .awards{grid-template-columns:1fr;} }
+  .award{
+    background:var(--ink);color:var(--paper-light);
+    padding:20px;
+    position:relative;
+    border-radius:2px;
+  }
+  .award::before, .award::after{
+    content:"";
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:16px;height:16px;background:var(--paper);border-radius:50%;
+  }
+  .award::before{left:-9px;}
+  .award::after{right:-9px;}
+  .award .trophy{font-size:22px;margin-bottom:6px;display:block;}
+  .award h4{
+    font-family:'Anton',sans-serif;
+    text-transform:uppercase;font-size:17px;margin:0 0 6px;
+    color:#f2c3d1;
+  }
+  .award .winner{
+    font-family:'Oswald',sans-serif;font-weight:700;
+    font-size:15px;margin-bottom:6px;
+  }
+  .award p{font-size:13.5px;margin:0;color:#e7cfd6;}
+
+  /* CLOSING */
+  .closing{
+    border-top:3px double var(--ink);
+    padding-top:24px;margin-top:10px;
+    font-family:'Libre Baskerville',serif;
+    font-style:italic;font-size:16px;
+    text-align:center;color:var(--ink-soft);
+  }
+  .closing .final{
+    font-family:'Anton',sans-serif;
+    font-style:normal;
+    text-transform:uppercase;
+    font-size:26px;color:var(--ink);
+    margin-top:14px;letter-spacing:0.01em;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">Edizione Straordinaria &middot; Mercato Estivo</div>
+    <h1 class="title">La Gazzetta<br>della Bari Cup</h1>
+    <div class="subtitle">Numero 0 &nbsp;/&nbsp; Speciale Asta 2026&ndash;27</div>
+    <div class="tagline">&laquo;Otto presidenti. Cinquecento crediti. Zero amicizie.&raquo;</div>
+  </div>
+  <div class="dateline">
+    <span>Stagione 2026/27</span>
+    <span>Sezione: Editoriale</span>
+    <span>Prezzo: la propria dignit&agrave;</span>
+  </div>
+
+  <div class="editorial">
+    <p><span class="drop">L</span>'estate &egrave; finita. Le vacanze anche. Le amicizie&hellip; forse. Perch&eacute; anche quest'anno la Bari Cup ha regalato quello che tutti aspettavano: un'asta infinita, rilanci senza piet&agrave;, accuse pi&ugrave; o meno velate e presidenti convinti di aver costruito la squadra perfetta.</p>
+    <p>Come ogni anno qualcuno esce pensando di aver vinto il campionato. Qualcun altro pensa gi&agrave; a gennaio. E qualcuno&hellip; probabilmente non ha ancora capito cosa sia successo.</p>
+    <p class="sign">&mdash; La Redazione</p>
+  </div>
+
+  <div class="section-eyebrow">Il caso della serata</div>
+  <h2 class="section-title">"Mi rilancia tutti!"</h2>
+  <div class="case-box">
+    <div class="stamp">Archiviato</div>
+    <p>Il primo caso diplomatico della stagione &egrave; scoppiato ancora prima del fischio d'inizio.</p>
+    <div class="versus">Atletico Ma Non Troppo <span class="vs">VS</span> Squirting Lisbona</div>
+    <p>Secondo la ricostruzione dell'Atletico, il presidente dello Squirting avrebbe avuto un unico obiettivo durante l'asta:</p>
+    <blockquote>&laquo;Rilanciare sistematicamente ogni giocatore che interessava all'Atletico.&raquo;</blockquote>
+    <p>La redazione ha aperto immediatamente un'indagine. Dopo ore di analisi, decine di rilanci visionati e numerose testimonianze, il verdetto &egrave; stato unanime:</p>
+    <div class="verdict">"...si chiama asta."</div>
+    <p style="margin-top:12px;">In un'asta il rilancio dell'avversario &egrave; una pratica talmente diffusa che alcuni studiosi sospettano sia addirittura prevista dal regolamento. Il caso viene archiviato &mdash; ma la rivalit&agrave; promette di accompagnare tutta la stagione.</p>
+  </div>
+
+  <div class="section-eyebrow">Retroscena di mercato</div>
+  <h2 class="section-title">Le storie dell'asta</h2>
+  <div class="grid">
+    <div class="story">
+      <div class="tag">Tecnologia &middot; Real Madrink</div>
+      <h3>Il premio Skynet</h3>
+      <p>Il Real Madrink si &egrave; affidato a un'Intelligenza Artificiale per costruire la rosa. Peccato che, secondo indiscrezioni, l'AI fosse rimasta bloccata a stagioni passate, distribuendo consigli degni di un museo del fantacalcio.</p>
+      <p>Una strategia costruita su dati virtuali&hellip; ma soprattutto vecchi.</p>
+      <span class="badge">Ha sbagliato l'uomo o la macchina?</span>
+    </div>
+    <div class="story">
+      <div class="tag">Colpo dell'asta &middot; 50 crediti</div>
+      <h3>La follia Baturina</h3>
+      <p>Quando il nome &egrave; comparso sul tabellone, qualcuno pensava a un acquisto intelligente. Poi il prezzo ha superato quota 30, poi 40, poi&hellip; 50 crediti.</p>
+      <p>Per alcuni un colpo visionario. Per altri una leggera perdita di contatto con la realt&agrave;.</p>
+      <span class="badge">Acquisto pi&ugrave; coraggioso dell'asta</span>
+    </div>
+    <div class="story">
+      <div class="tag">Operazione Milanello</div>
+      <h3>Squirting compra il Milan</h3>
+      <p>La dirigenza dello Squirting Lisbona deve aver interpretato male il regolamento: pensava di dover acquistare una squadra intera. E cos&igrave;, pezzo dopo pezzo, si &egrave; ritrovata con mezzo Milan.</p>
+      <p>Genio o azzardo? Lo dir&agrave; il campo rossonero.</p>
+      <span class="badge">Strategia coraggiosa e pericolosa</span>
+    </div>
+    <div class="story">
+      <div class="tag">Garlascow Rangers</div>
+      <h3>Il paradosso del risparmio</h3>
+      <p>Il piano era perfetto: conservare crediti, aspettare i pezzi grossi, colpire al momento giusto. Poi sono finiti i giocatori. E i colpi grossi non sono mai arrivati.</p>
+      <p>Risultato: tanti crediti risparmiati, e un attacco guidato da Colombo e Piccoli.</p>
+      <span class="badge">Gennaio gi&agrave; cerchiato in rosso</span>
+    </div>
+  </div>
+
+  <div class="section-eyebrow">Il verdetto della redazione</div>
+  <h2 class="section-title">Le pagelle dell'asta</h2>
+
+  <div class="pagella"><div class="dot" style="background:#2e9e4f;">8,5</div><div><h4>Olindhoven 2006 FC</h4><p>Rosa costruita con equilibrio, senza farsi prendere dal panico. Pochi fuochi d'artificio, molta sostanza. Sensazione da prime posizioni.</p></div><div class="vote">8,5</div></div>
+
+  <div class="pagella"><div class="dot" style="background:#2f6fce;">7,5</div><div><h4>Wendy Windham per la Gloria</h4><p>Asta intelligente, qualche scommessa interessante. Se gli episodi girano bene, pu&ograve; diventare una mina vagante.</p></div><div class="vote">7,5</div></div>
+
+  <div class="pagella"><div class="dot" style="background:#d1a11c;">7</div><div><h4>Segalfredo</h4><p>Rosa ordinata. Forse manca il colpo da copertina, ma nei fantacalci spesso vincono proprio quelli che fanno meno rumore.</p></div><div class="vote">7</div></div>
+
+  <div class="pagella"><div class="dot" style="background:#c1332a;">8</div><div><h4>Squirting Lisbona</h4><p>Ha diviso la sala, ha rilanciato, ha fatto discutere, ha comprato mezzo Milan. Gi&agrave; protagonista mediatico della stagione.</p></div><div class="vote">8</div></div>
+
+  <div class="pagella"><div class="dot" style="background:#cfcfcf;color:#201613;">6</div><div><h4>Real Madrink CF</h4><p>L'asta pi&ugrave; misteriosa. La sensazione &egrave; che il presidente abbia seguito ciecamente un algoritmo convinto di essere nel 2025.</p></div><div class="vote">6</div></div>
+
+  <div class="pagella"><div class="dot" style="background:#2e9e4f;">6,5</div><div><h4>Garlascow Rangers</h4><p>Strategia chiara, esecuzione meno. Conservare crediti &egrave; utile: ricordarsi poi di spenderli, anche.</p></div><div class="vote">6,5</div></div>
+
+  <div class="pagella"><div class="dot" style="background:#c1332a;">7,5</div><div><h4>Atletico Ma Non Troppo</h4><p>Ha vissuto l'asta con intensit&agrave;, forse anche troppa. Esce con una buona squadra e una rivalit&agrave; gi&agrave; accesa.</p></div><div class="vote">7,5</div></div>
+
+  <div class="pagella"><div class="dot" style="background:#201613;">8</div><div><h4>RapidFootjob</h4><p>Una delle rose che convince maggiormente. Pochi eccessi, molta qualit&agrave;. Parte nel gruppo delle favorite.</p></div><div class="vote">8</div></div>
+
+  <h2 class="section-title" style="margin-top:44px;">Le quote scudetto</h2>
+  <div class="quote-list">
+    <div class="quote-row"><span class="pos">🥇</span><span class="name">RapidFootjob</span><span class="stars">★★★★★</span></div>
+    <div class="quote-row"><span class="pos">🥈</span><span class="name">Olindhoven 2006 FC</span><span class="stars">★★★★☆</span></div>
+    <div class="quote-row"><span class="pos">🥉</span><span class="name">Squirting Lisbona</span><span class="stars">★★★★☆</span></div>
+    <div class="quote-row"><span class="pos">4&deg;</span><span class="name">Atletico Ma Non Troppo</span><span class="stars">★★★★</span></div>
+    <div class="quote-row"><span class="pos">5&deg;</span><span class="name">Wendy Windham</span><span class="stars">★★★☆</span></div>
+    <div class="quote-row"><span class="pos">6&deg;</span><span class="name">Segalfredo</span><span class="stars">★★★</span></div>
+    <div class="quote-row"><span class="pos">7&deg;</span><span class="name">Garlascow Rangers</span><span class="stars">★★☆</span></div>
+    <div class="quote-row"><span class="pos">8&deg;</span><span class="name">Real Madrink</span><span class="stars">★★</span></div>
+  </div>
+
+  <h2 class="section-title">I premi della serata</h2>
+  <div class="awards">
+    <div class="award">
+      <span class="trophy">🏆</span>
+      <h4>Il Piromane</h4>
+      <div class="winner">Squirting Lisbona</div>
+      <p>Per essere riuscito a innervosire almeno un presidente ancora prima dell'inizio del campionato.</p>
+    </div>
+    <div class="award">
+      <span class="trophy">🏆</span>
+      <h4>Il Visionario</h4>
+      <div class="winner">Baturina a 50 crediti</div>
+      <p>Tra un anno sapremo se era follia o genialit&agrave;.</p>
+    </div>
+    <div class="award">
+      <span class="trophy">🏆</span>
+      <h4>Il Risparmiatore dell'Anno</h4>
+      <div class="winner">Garlascow Rangers</div>
+      <p>Ha custodito i crediti come fossero lingotti d'oro. Peccato che il supermercato stesse chiudendo.</p>
+    </div>
+    <div class="award">
+      <span class="trophy">🏆</span>
+      <h4>Il Premio HAL 9000</h4>
+      <div class="winner">Real Madrink</div>
+      <p>L'unico presidente che, in caso di sconfitta, potr&agrave; sempre dire: "Non &egrave; colpa mia. Me l'ha consigliato l'Intelligenza Artificiale."</p>
+    </div>
+  </div>
+
+  <div class="closing">
+    <p>Le aste non assegnano lo Scudetto. Ma raccontano gi&agrave; molto. Raccontano chi ha avuto coraggio, chi ha avuto paura, chi ha seguito il cuore &mdash; e chi ha seguito un algoritmo probabilmente aggiornato all'era geologica precedente.</p>
+    <p>Da oggi si smette di parlare. Da oggi parlano i voti. E noi saremo qui, ogni settimana, a raccontare tutto.</p>
+    <div class="final">La Bari Cup &egrave; ufficialmente iniziata.</div>
+  </div>
+
+</div>
+</body>
+</html>
